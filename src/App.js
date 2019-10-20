@@ -67,10 +67,12 @@ class App extends Component {
     }
     handleSubmit(e) {
         console.log(this.state);
-        if (this.state.user == '' || this.state.password == '') {
+        if (this.state.user.username == '' || this.state.user.password == '') {
             alert("All fields are required.")
             return
-        }
+        } else this.addUser()
+
+
 
     }
 
@@ -89,10 +91,10 @@ class App extends Component {
                 }
             }).then(response => response.json())
             .then((data) => {
-               console.loog(data);
+               console.log(data);
             })
             .catch((error) => {
-                conole.log(error)
+                console.log(error)
                 this.setState({loading: false});
             })
             .finally(() => {
@@ -153,6 +155,12 @@ class App extends Component {
                                     <Form.Control name="lastName" value={this.state.user.lastName}
                                                   onChange={this.handleUserFormChange}
                                                   placeholder="Smith"/>
+                                </Form.Group>
+                                <Form.Group as={Col} md="4" controlId="user.email">
+                                    <Form.Label>Last Name</Form.Label>
+                                    <Form.Control name="email" value={this.state.user.email}
+                                                  onChange={this.handleUserFormChange}
+                                                  placeholder="foo@foo.com"/>
                                 </Form.Group>
 
                             </Form.Row>
